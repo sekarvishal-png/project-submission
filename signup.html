@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | ProjectTrack</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1d2433;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #d7dce6;
+      --error: #dc2626;
+      --ok: #15803d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    header { padding: 20px 24px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .logo { width: 36px; height: 36px; object-fit: contain; }
+    main { flex: 1; display: grid; place-items: center; padding: 24px; }
+    .card {
+      background: var(--card); width: 100%; max-width: 480px;
+      border-radius: 16px; padding: 36px 32px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+    .badge {
+      display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent);
+      background: #e8efff; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+    }
+    h1 { font-size: 24px; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    input, select {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+      border-radius: 10px; font-size: 15px; margin-bottom: 16px; font-family: inherit;
+      background: #fff;
+    }
+    input:focus, select:focus {
+      outline: none; border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .hint { font-size: 12px; color: var(--muted); margin: -10px 0 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    button {
+      width: 100%; padding: 13px; border: none; border-radius: 10px;
+      background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; cursor: pointer;
+    }
+    button:hover { background: var(--accent-hover); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .msg { font-size: 14px; margin-bottom: 16px; display: none; }
+    .msg.err { color: var(--error); display: block; }
+    .msg.ok { color: var(--ok); display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .switch { margin-top: 24px; text-align: center; font-size: 14px; color: var(--muted); }
+    footer { text-align: center; font-size: 13px; color: var(--muted); padding: 16px; }
+    @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="srm-logo.png" alt="SRM Valliammai Engineering College logo" />
+    <span>ProjectTrack</span>
+  </header>
+
+  <main>
+    <section class="card">
+      <span class="badge">Create Account</span>
+      <h1>Sign Up</h1>
+      <p class="subtitle">Use your institutional details. SRM Valliammai Engineering College</p>
+
+      <p class="msg" id="msg" role="alert"></p>
+
+      <form id="signupForm" novalidate>
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+
+        <label for="email">Institutional Email</label>
+        <input type="email" id="email" name="email" placeholder="name@srmvalliammai.edu.in" required />
+
+        <div class="grid-2">
+          <div>
+            <label for="role">I am a</label>
+            <select id="role" name="role" required>
+              <option value="">Select</option>
+              <option value="Student">Student</option>
+              <option value="Professor">Professor</option>
+            </select>
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+          </div>
+        </div>
+
+        <label for="idNumber" id="idLabel">Register Number / Staff ID</label>
+        <input type="text" id="idNumber" name="idNumber" placeholder="e.g. 2026CS001" required />
+
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+          <option value="">Select department</option>
+          <option>Computer Science and Engineering</option>
+          <option>Artificial Intelligence and Data Science</option>
+          <option>Electronics and Communication Engineering</option>
+          <option>Mechanical Engineering</option>
+          <option>Electrical and Electronics Engineering</option>
+          <option>Information Technology</option>
+          <option>Civil Engineering</option>
+        </select>
+
+        <div class="grid-2">
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required />
+          </div>
+          <div>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" required />
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Create Account</button>
+      </form>
+
+      <p class="switch">Already have an account? <a href="student-login.html">Student login</a> · <a href="professor-login.html">Professor login</a></p>
+      <p class="switch"><a href="index.html">← Back to home</a></p>
+    </section>
+  </main>
+
+  <footer>© 2026 ProjectTrack. Deployed for SRM Valliammai Engineering College.</footer>
+
+  <script>
+    // Same Apps Script web app used by the home page form.
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzc_TxCEW2z4RfHg9ExK31pxjgWdMCcby4bFeS8UHwNbceWqt22uh0fX6mnws0iAHsDDw/exec";
+
+    const form = document.getElementById("signupForm");
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("submitBtn");
+    const roleEl = document.getElementById("role");
+    const idLabel = document.getElementById("idLabel");
+    const idInput = document.getElementById("idNumber");
+
+    // Change the ID field label to match the role.
+    roleEl.addEventListener("change", () => {
+      if (roleEl.value === "Professor") {
+        idLabel.textContent = "Staff ID";
+        idInput.placeholder = "e.g. SRMV-STF-101";
+      } else {
+        idLabel.textContent = "Register Number";
+        idInput.placeholder = "e.g. 2026CS001";
+      }
+    });
+
+    function showMessage(text, type) {
+      msg.textContent = text;
+      msg.className = "msg " + type;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        role: form.role.value,
+        idNumber: form.idNumber.value.trim(),
+        department: form.department.value,
+        phone: form.phone.value.trim(),
+        password: form.password.value
+      };
+
+      if (!data.fullName || !data.email || !data.role || !data.idNumber || !data.department) {
+        showMessage("Please fill in all required fields.", "err");
+        return;
+      }
+      if (data.password.length < 8) {
+        showMessage("Password must be at least 8 characters.", "err");
+        return;
+      }
+      if (data.password !== form.confirmPassword.value) {
+        showMessage("Passwords do not match.", "err");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Creating account...";
+
+      try {
+        // Sent as a POST body so the password is not visible in the URL.
+        // mode "no-cors" means the browser cannot read the server's reply,
+        // so the Apps Script should save the row and the page shows success.
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ type: "signup", ...data })
+        });
+        showMessage("Account request submitted. You can now log in.", "ok");
+        form.reset();
+        idLabel.textContent = "Register Number / Staff ID";
+      } catch (err) {
+        showMessage("Something went wrong. Please try again.", "err");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Create Account";
+      }
+    });
+  </script>
+</body>
+</html>
